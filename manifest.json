@@ -8,5 +8,9 @@
       "scripts": ["background.js"]
     }
   },
+  "permissions": [
+    "fileSystem",
+    {"fileSystem": ["directory"]} 
+  ],
   "icons": { "16": "password-16.png", "128": "password-128.png" }
 }
