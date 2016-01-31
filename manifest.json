@@ -1,14 +1,12 @@
 {
+  "name": "Pass-Chrome",
   "manifest_version": 2,
-  "name": "GTmetrix Analyzer Plugin",
-  "description": "This extension will analyze a page using GTmetrix",
-  "version": "1.0",
-
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+  "description": "A chrome extension interface for pass (passwordstore.org)",
+  "version": "0.1.1",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
   },
-  "permissions": [
-    "activeTab"
-  ]
+  "icons": { "16": "password-16.png", "128": "password-128.png" }
 }
