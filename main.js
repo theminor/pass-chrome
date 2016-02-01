@@ -110,4 +110,45 @@ Spw4u56VfXiH7b4PFikwsBq85jDmLUS6BKORZM12VslSYDjTqg==
   });
 
 
+
+
+
+  $("#passBtn").bind("click", function() {
+    $(this).text("Clicked!!");
+    chrome.fileSystem.chooseEntry({type: 'openFile'}, function(readOnlyEntry) {
+      readOnlyEntry.file(function(file) {
+        var reader = new FileReader();
+        reader.onerror = function(err) {
+          $("#tstPar").text(err);
+        };
+        reader.onloadend = function(e) {
+          var pgpMessage = e.target.result;
+          fs.root.getFile('/home/john/skey/key', {}, function(readKeyEntry) { // *** not working
+            readKeyEntry.file(function(file) {
+              var reader2 = new FileReader();
+              reader2.onerror = function(err) {
+                $("#tstPar").text(err);
+              };
+              reader2.onloadend = function(e2) {
+                var key = e2.target.result;
+                var privateKey = openpgp.key.readArmored(key).keys[0];
+                privateKey.decrypt('****************');  // **** change to test
+                pgpMessage = openpgp.message.readArmored(pgpMessage);
+                openpgp.decryptMessage(privateKey, pgpMessage).then(function(plaintext) { // success
+                  $("#tstPar").text(plaintext); // output the decrypted text
+                }).catch(function(err) {  // failure
+                  $("#tstPar").text(err);
+                });
+              };
+              reader2.readAsText(file);
+            });
+          });
+        };
+        reader.readAsText(file);
+      });
+    });
+  });
+
+
+
 });
