@@ -123,7 +123,7 @@ Spw4u56VfXiH7b4PFikwsBq85jDmLUS6BKORZM12VslSYDjTqg==
         };
         reader.onloadend = function(e) {
           var pgpMessage = e.target.result;
-          fs.root.getFile('/home/john/skey/key', {}, function(readKeyEntry) { // *** not working
+          fs.root.getFile('/home/*******/key', {}, function(readKeyEntry) { // *** not working -- can't use getfile, apparently
             readKeyEntry.file(function(file) {
               var reader2 = new FileReader();
               reader2.onerror = function(err) {
