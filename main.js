@@ -1,3 +1,4 @@
+// *** todo - how do deal with chrome's disallowance of local file access. This is frusterating.
 $(document).ready(function() {
 
 
